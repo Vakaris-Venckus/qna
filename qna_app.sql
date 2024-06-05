@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2024 at 03:10 PM
+-- Generation Time: Jun 05, 2024 at 05:52 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -35,9 +35,8 @@ CREATE TABLE `answers` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `answers`
---
+-- --------------------------------------------------------
+
 --
 -- Table structure for table `categories`
 --
@@ -47,6 +46,17 @@ CREATE TABLE `categories` (
   `name` varchar(100) NOT NULL,
   `description` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `description`) VALUES
+(1, 'IT', NULL),
+(2, 'Sports', NULL),
+(3, 'Other', NULL);
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `questions`
@@ -65,6 +75,10 @@ CREATE TABLE `questions` (
 --
 -- Dumping data for table `questions`
 --
+
+INSERT INTO `questions` (`id`, `title`, `category_id`, `description`, `user_id`, `created_at`, `edited_at`) VALUES
+(17, 'Testing title', 1, 'testing description', 7, '2024-06-05 15:48:47', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -78,8 +92,10 @@ CREATE TABLE `sessions` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `sessions`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -90,6 +106,16 @@ CREATE TABLE `users` (
   `role` enum('admin','user') DEFAULT 'user',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `role`, `created_at`) VALUES
+(3, 'admin', '$2a$10$ybFrAK2CFPLJ5SEqGGAn/epij0DuMe2LolWfAwix02Hhz4A1uD8PO', 'admin@gmail.com', 'admin', '2024-05-25 10:00:00'),
+(7, 'coolusername', '$2a$10$RuYOCH3GxpM0CJfddr4CFO6evHb.60XNozPswHjKLGSeZftGuKHPO', 'user@gmail.com', 'user', '2024-06-05 15:48:06');
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `votes`
@@ -103,9 +129,6 @@ CREATE TABLE `votes` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `votes`
---
 --
 -- Indexes for dumped tables
 --
@@ -173,19 +196,19 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `sessions`
 --
 ALTER TABLE `sessions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `votes`
